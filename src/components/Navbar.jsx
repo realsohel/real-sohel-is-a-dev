@@ -9,7 +9,7 @@ const Navbar = () => {
   const[toggle, setToggle] = useState(false);
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed 
+      className={`${styles.paddingX} w-full flex items-center py-2 fixed 
         top-0 z-20 bg-primary`}
     >
 
@@ -22,7 +22,7 @@ const Navbar = () => {
             window.scrollTo(0,0);
           }}
         >
-          <img src={logo} alt="logo" className='w-16 h-16 object-contain'/>
+          <img src={logo} alt="logo" className='w-12 h-12 object-contain'/>
           <p className='text-white text-[18px] font-bold cursor-pointer'>
             Mohd Sohel 
           </p>
@@ -32,6 +32,7 @@ const Navbar = () => {
           {
             navLinks.map((link)=>(
               <li
+                key={link.id}
                 className={`${active===link.title ? "text-white":"text-secondary"} 
                   hover:text-white text-[18px] font-medium cursor-pointer`}
                 onClick={()=>setActive(link.title)}
@@ -55,6 +56,7 @@ const Navbar = () => {
               {
                 navLinks.map((link)=>(
                   <li
+                  key={link.id}
                     className={`${active===link.title ? "text-white":"text-secondary"} 
                       font-poppins text-[16px] my-2 font-medium cursor-pointer`}
                     onClick={()=>{
