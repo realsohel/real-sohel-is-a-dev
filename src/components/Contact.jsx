@@ -27,39 +27,41 @@ const Contact = () => {
 
     setForm({...form, [target.name]:target.value});
   }
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
-    setLoading(true)
-    emailjs.send(
-      'service_27v7xrh',
-      'template_znajqbg',
-      {
-        from_name: form.name,
-        to_name: 'Mohd Sohel Salmani',
-        from_email: form.email,
-        to_email: 'salmanisohail26@gmail.com',
-        message: form.message,
-      },
-      'o6mCS85bfcxAmQhvo'
-    )
-    .then(()=>{
-      setLoading(false)
-      alert("Thank you for your message, I'll reach back to you as soon as possible.")
-      setForm({
-        name:'',
-        email:'',
-        message:''
-      })
-    },(error)=>{
-      setLoading(false)
-      console.error(error);
-      alert("Oopps!! Something went Wrong, please try again later")
-    }
   
-    )
-    
-  }
+    setLoading(true);
+  
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          to_name: import.meta.env.VITE_TO_NAME,
+          from_email: form.email,
+          to_email: import.meta.env.VITE_TO_EMAIL,
+          message: `Dear ${import.meta.env.VITE_TO_NAME}, \n New Message from ${form.name} with email - ${form.email} \n And the message is, \n ${form.message}`,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setLoading(false);
+          alert("Thank you for your message, I'll reach back to you as soon as possible.");
+          setForm({
+            name: '',
+            email: '',
+            message: '',
+          });
+        },
+        (error) => {
+          setLoading(false);
+          console.error(error);
+          alert('Oops!! Something went wrong, please try again later.');
+        }
+      );
+  };
 
   return (
     <div
@@ -84,7 +86,7 @@ const Contact = () => {
               name='name'
               value={form.name}
               onChange={handleChange}
-              placeholder="What's your good name?"
+              placeholder="Enter your name."
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
@@ -95,7 +97,7 @@ const Contact = () => {
               name='email'
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
+              placeholder="Enter your email."
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
@@ -106,14 +108,14 @@ const Contact = () => {
               name='message'
               value={form.message}
               onChange={handleChange}
-              placeholder='What you want to say?'
+              placeholder='How can I help you ?'
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
 
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary "hover:cursor-pointer hover:scale-110 transition-transform duration-200"'
           >
             {loading ? "Sending..." : "Send"}
           </button>

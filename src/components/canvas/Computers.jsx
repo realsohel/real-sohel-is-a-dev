@@ -1,12 +1,19 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import * as THREE from 'three';
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
-
+  useEffect(() => {
+    const geometry = new THREE.IcosahedronGeometry(1, 1);
+    if (geometry.attributes.position.array.some(isNaN)) {
+      console.error("Position attribute contains NaN values.");
+    }
+  }, []);
+  
   return (
     <mesh>
       <hemisphereLight intensity={2} groundColor='black' />

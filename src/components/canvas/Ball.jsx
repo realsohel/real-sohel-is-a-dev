@@ -1,5 +1,6 @@
-import React, {Suspense} from 'react'
+import React, {Suspense, useEffect} from 'react'
 import { Canvas } from '@react-three/fiber'
+import * as THREE from 'three';
 import {
   Decal, Float, OrbitControls, Preload, useTexture
 } from '@react-three/drei';
@@ -7,10 +8,16 @@ import Loader from '../Loader'
 
 
 const Ball = (props) => {
-  const [decal] = useTexture([props.imgUrl]);
+  const [decal] = useTexture([props.imgUrl || 'fallback_image_url']);
+  useEffect(() => {
+    const geometry = new THREE.IcosahedronGeometry(1, 1);
+    if (geometry.attributes.position.array.some(isNaN)) {
+      console.error("Position attribute contains NaN values.");
+    }
+  }, []);
   
   return (
-    <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
+    <Float speed={1.75} rotationIntensity={1} floatIntensity={2} > 
       <ambientLight intensity={0.25}/>
       <directionalLight position={[0,0,0.05]}/>
 
@@ -41,7 +48,7 @@ const BallCanvas = ({icon})=>{
     >
       <Suspense fallback={<Loader />}>
         <OrbitControls enableZoom={false} />
-        <Ball imgUrl={icon} />
+        <Ball imgUrl={icon}  />
       </Suspense>
 
       <Preload all />

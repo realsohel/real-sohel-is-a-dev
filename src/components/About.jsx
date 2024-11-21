@@ -43,7 +43,8 @@ const About = () => {
         variants={fadeIn("","",0.1,1)}
         className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae molestias voluptate minima qui porro dicta maiores! Corrupti delectus dolores quod. Consequuntur tenetur soluta quisquam et ut, repudiandae tempore harum placeat laudantium. Deleniti, nam? Atque mollitia inventore illum dolor. Provident, voluptatum?
+        I am a person who’s always learning, and passionate about exploring technology and tools to help me enhance my daily life.
+        I work well in a team and support my team members in places I can assist. I have worked on multiple projects in various fields both as part of a team and by myself.
       </motion.p>
 
       <div className="mt-20 flex flex-wrap gap-10 ">

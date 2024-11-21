@@ -1,9 +1,9 @@
-import React, {useEffect,useState} from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { styles } from '../styles'
 import {navLinks} from "../constants";
-import { logo, menu, close } from '../assets';
-import logo2 from "../assets/logo2.png"
+import { menu, close ,my_pic} from '../assets';
+
 const Navbar = () => {
   const[active, setActive] = useState("");
   const[toggle, setToggle] = useState(false);
@@ -13,7 +13,7 @@ const Navbar = () => {
         top-0 z-20 bg-primary`}
     >
 
-      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
+      <div className="w-full flex justify-between gap-36  md:gap-0  items-center max-w-7xl mx-auto">
         <Link
           to="/"
           className='flex items-center gap-2 '
@@ -22,7 +22,7 @@ const Navbar = () => {
             window.scrollTo(0,0);
           }}
         >
-          <img src={logo} alt="logo" className='w-12 h-12 object-contain'/>
+          <img src={my_pic} alt="logo" className='w-12 h-12 object-contain'/>
           <p className='text-white text-[18px] font-bold cursor-pointer'>
             Mohd Sohel 
           </p>
@@ -43,9 +43,9 @@ const Navbar = () => {
           }
         </ul>
 
-        <div className='sm:hidden flex flex-1 justify-center items-center'>
+        <div className='sm:hidden flex flex-1 justify-center items-center right-0 '>
           <img src={toggle? close: menu} alt="menu" 
-            className='w-[28px] h-[28px] object-contain cursor-pointer'
+            className='w-[28px] h-[28px] object-contain cursor-pointer right-0'
             onClick={()=>setToggle(!toggle)}
           />
 
