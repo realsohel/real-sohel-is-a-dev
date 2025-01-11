@@ -4,6 +4,7 @@ import { OrbitControls, Preload, useGLTF} from "@react-three/drei"
 import Loader from "../Loader"
 
 const Earth = () => {
+  // const computer = useGLTF("./desktop_pc/scene.gltf");
   const earth = useGLTF('./planet/scene.gltf')
   return (
     <primitive

@@ -9,7 +9,7 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRef, useState } from "react"
 
-const AwardCard =({name,description,role,index, designation, company, image})=>{
+const AwardCard =({name,description,role,index, company, image})=>{
 
   return(
     <motion.div
@@ -75,7 +75,7 @@ const Feedbacks = () => {
         </motion.div>
       </div>
 
-      <div className={`${styles.paddingX} -mt-20 pb-14 flex flex-wrap gap-7`}>
+      <div className={`${styles.paddingX} -mt-10 md:-mt-16 lg:-mt-20 pb-14 flex flex-wrap gap-7`}>
         
         {!isBeginning && (
           <MdChevronLeft
@@ -89,18 +89,22 @@ const Feedbacks = () => {
           spaceBetween={30}
           slidesPerView={1}
           pagination={{clickable:true}}
+          centeredSlides={true}
           breakpoints={{
               640:{
                   slidesPerView: 1,
-                  spaceBetween: 0,
+                  spaceBetween: 10,
+                  centeredSlides: true,
               },
               768:{
                   slidesPerView: 2,
                   spaceBetween: 20,
+                  centeredSlides: false,
               },
               1024:{
                   slidesPerView: 3,
                   spaceBetween: 30,
+                  centeredSlides: false,
               },
           }}
           onSwiper={(swiper) => {
